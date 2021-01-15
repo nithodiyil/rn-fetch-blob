@@ -84,10 +84,14 @@ public class RNFetchBlobUtils {
             builder.hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
-                    return true;
+                    if(hostname.contains("copart.com") || hostname.contains("copart.ca") || hostname.contains("copart.de") || hostname.contains("copart.es")
+                            || hostname.contains("copart.co.uk") || hostname.contains("copartmea.com") || hostname.contains("copart.ie") || hostname.contains("copart.fi")
+                            || hostname.contains("copart.sc.omtrdc.net") || hostname.contains("ip-api.com") || hostname.contains("songbirdstag.cardinalcommerce.com") || hostname.contains("autocheck.com")) {
+                        return true;
+                    } else
+                        return false;
                 }
             });
-
             return builder;
         } catch (Exception e) {
             throw new RuntimeException(e);
